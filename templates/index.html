@@ -1,3 +1,5 @@
+<!-- using flask, which leverages jinja2 as the template engine -->
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,25 +19,35 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>-->
-            <a class="navbar-brand" href="#">Allan Dao</a>
+            <a class="navbar-brand" href="#">{{ title }}</a>
         </div>
     </div>
 </nav>
 
 <div class="container">
-<h2>{{ title }}</h2>
+<!-- <h2>{{ title }}</h2> -->
 <p>{{ paragraph }}</p>
-<a href = "https://rss.com/blog/popular-rss-feeds/">RSS Feeds List</a>
+<p>The whitelisted website restriction is due to constraints set by PythonAnywhere's free plan.</p>
+<a href = "https://www.pythonanywhere.com/whitelist/">PythonAnywhere's Whitelisted Websites</a>
+<p>Example RSS Feeds to use:</p>
+<li>https://www.nlm.nih.gov/rss/auto/NLMGeneralAnnouncements.rss (Default feed on page load)</li>
+<li>https://www.loc.gov/rss/pao/news.xml</li>
+<li style = "padding-bottom: 15px;">https://xkcd.com/rss.xml</li>
 
-<form method="POST">
-  <label for="fname">Paste in URL of RSS Feed:</label><br />
-  <input type="text" id="url" name="url" value=""><br /><br />
+<form method="POST" style = "padding-bottom: 15px;">
+  <label for="fname">Paste in full URL of RSS Feed, including http:// or https:// :</label><br />
+  <input type="text" id="UserURL" name="UserURL" value=""><br /><br />
   <input type="submit" class="btn btn-success" value="View">
 </form>
+
+<p>Formatted RSS Feed:</p>
+
 {% for row in url %}
-            <li>{{ row }}</li>
-            {% endfor %}
-<a href = "allandao.com" style = "margin-top: 10px;">allandao.com</a>
+    <li>{{ row['title'] + ' - ' + row['publishingDate'] }}</li>
+    <p>{{ row['link'] }}</p>
+{% endfor %}
+
+<p>Made by <a href = "allandao.com" style = "padding: 20px 0 20px 0;">Allan.</a></p>
 
 </div> <!-- end of container -->
 

@@ -12,29 +12,34 @@ def get_rss():
         # since we are on the PythonAnyhwere platform, there are certain whitelisted websites that we must use under the free plan
         # the following link provides more details: https://www.pythonanywhere.com/whitelist/
         # not using a whitelisted link gives the following error in the server.log files https://www.pythonanywhere.com/forums/topic/12714/ and does not allow the web app to load
-        r = requests.get('https://www.nlm.nih.gov/rss/auto/NLMGeneralAnnouncements.rss') # rss feeds result in xml data
-        ycombinator_rssfeed = BeautifulSoup(r.content, features='xml')
+        r = requests.get('https://www.nlm.nih.gov/rss/auto/NLMGeneralAnnouncements.rss') # GET method from rss feeds result in xml data
+        rssfeed_data = BeautifulSoup(r.content, features='xml')
         # if scraping HTML, we would set features to 'html'
-        # ycombinator_rssfeed = BeautifulSoup(r.content, "lxml") - needs to have lxml installed (this is an alternative)
-        print(ycombinator_rssfeed)
+        # rssfeed_data = BeautifulSoup(r.content, "lxml") - needs to have lxml installed (this is an alternative)
+        print(rssfeed_data)
 
         article_list = []
 
         # add all articles to an array
-        articles = ycombinator_rssfeed.findAll('item')
+        articles = rssfeed_data.findAll('item')
         for i in articles: # i being each item in the list of outputted articles from the rss feed
             title = i.find('title').text
             link = i.find('link').text
-            published = i.find('pubDate').text
+            publishingDate = i.find('pubDate').text
             article = {
                 'title': title,
                 'link': link,
-                'published': published
+                'publishingDate': publishingDate
                 }
             article_list.append(article)
+
+        article_list_formatted = []
+        for x in range(len(article_list)):
+            article_list_formatted.append(article_list[x]['title'] + ' - ' + article_list[x]['publishingDate'] + ' \nLink: ' + article_list[x]['link'])
+
         return article_list
 
         # return print('scraping succeeded: ', r.status_code) # should print 200 for r.status_code
     except Exception as e:
-        print('scraping failed. Here is the exception: ')
+        print('Scraping failed. Here is the exception: ')
         return print(e)
