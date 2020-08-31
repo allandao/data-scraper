@@ -20,8 +20,8 @@ app.config["DEBUG"] = True # remove when finished testing
 @app.route('/')
 def index():
     header_page = "Python Web Scraping Project"
-    url = get_rss()
-    return render_template('index.html', title = header_page, paragraph = "Paste a url of any RSS feed of any website whitelisted by PythonAnywhere to see the resulting data in a easy to read format.", url = url)
+    rss_feed = get_rss()
+    return render_template('index.html', title = header_page, paragraph = "Paste a url of any RSS feed of any website whitelisted by PythonAnywhere to see the resulting data in a easy to read format.", rss_feed = rss_feed)
 
 @app.route('/', methods=['POST'])
 def index_post():

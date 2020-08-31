@@ -42,9 +42,9 @@
 
 <p>Formatted RSS Feed:</p>
 
-{% for row in url %}
-    <li>{{ row['title'] + ' - ' + row['publishingDate'] }}</li>
-    <p>{{ row['link'] }}</p>
+{% for article in url %}
+    <li>{{ article['title'] + ' - ' + article['publishingDate'] }}</li>
+    <p>{{ article['link'] }}</p>
 {% endfor %}
 
 <p>Made by <a href = "allandao.com" style = "padding: 20px 0 20px 0;">Allan.</a></p>
