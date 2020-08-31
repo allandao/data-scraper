@@ -25,8 +25,7 @@
 </nav>
 
 <div class="container">
-<!-- <h2>{{ title }}</h2> -->
-<p>{{ paragraph }}</p>
+<p>{{ project_description }}</p>
 <p>The whitelisted website restriction is due to constraints set by PythonAnywhere's free plan.</p>
 <a href = "https://www.pythonanywhere.com/whitelist/">PythonAnywhere's Whitelisted Websites</a>
 <p>Example RSS Feeds to use:</p>
@@ -42,7 +41,7 @@
 
 <p>Formatted RSS Feed:</p>
 
-{% for article in url %}
+{% for article in rss_feed %}
     <li>{{ article['title'] + ' - ' + article['publishingDate'] }}</li>
     <p>{{ article['link'] }}</p>
 {% endfor %}

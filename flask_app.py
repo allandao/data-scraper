@@ -14,14 +14,14 @@ from flask import render_template
 from scraper import get_rss
 
 app = Flask(__name__)
-app.config["DEBUG"] = True # remove when finished testing
+app.config["DEBUG"] = True # can remove when finished testing
 # static files like css files go into a subfolder called static, files like index.html go into a subfolder called templates. configure on PythonAnywhere
 
 @app.route('/')
 def index():
-    header_page = "Python Web Scraping Project"
+    site_title = "Python Web Scraping Project"
     rss_feed = get_rss()
-    return render_template('index.html', title = header_page, paragraph = "Paste a url of any RSS feed of any website whitelisted by PythonAnywhere to see the resulting data in a easy to read format.", rss_feed = rss_feed)
+    return render_template('index.html', title = site_title, project_description = "Paste a url of any RSS feed of any website whitelisted by PythonAnywhere to see the resulting data in a easy to read format.", rss_feed = rss_feed)
 
 @app.route('/', methods=['POST'])
 def index_post():
