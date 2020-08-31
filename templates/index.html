@@ -30,14 +30,14 @@
             <li>https://www.loc.gov/rss/pao/news.xml</li>
             <li style = "padding-bottom: 15px;">https://xkcd.com/rss.xml</li>
             <form method="POST" style = "padding-bottom: 15px;">
-                <label for="fname">Paste in full URL of RSS Feed, including http:// or https:// :</label><br />
+                <label for="fname">Paste in full URL of RSS Feed, including http:// or https:// below:</label><br />
                 <input type="text" id="UserURL" name="UserURL" value=""><br /><br />
                 <input type="submit" class="btn btn-success" value="View">
             </form>
             <p>Formatted RSS Feed:</p>
             {% for article in rss_feed %}
             <li>{{ article['title'] + ' - ' + article['publishingDate'] }}</li>
-            <p>{{ article['link'] }}</p>
+            <p>Link: <a href = "{{ article['link'] }}" >{{ article['link'] }}</a></p>
             {% endfor %}
             <p>Made by <a href = "allandao.com" style = "padding: 20px 0 20px 0;">Allan.</a></p>
         </div>
