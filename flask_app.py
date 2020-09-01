@@ -18,7 +18,7 @@ app = Flask(__name__)
 # static files like css files go into a subfolder called static, files like index.html go into a subfolder called templates. configure on PythonAnywhere
 
 site_title = 'Python Web Scraping Project'
-project_description = 'Paste a url of any RSS feed of any website whitelisted by PythonAnywhere to see the resulting data in a easy to read format.'
+project_description = 'Paste a url of any RSS feed of any website whitelisted by PythonAnywhere to see the resulting data in an easy to read format.'
 currentLink = 'onWebAppStart'
 
 @app.route('/')
@@ -36,7 +36,8 @@ def index_post():
 @app.errorhandler(Exception)
 def serverError(e):
     # set to str(e) if outputting the error is desired
-    # rss_feed does not need to be passed as index.js is set up to handle when the variable is not defined
+    # rss_feed does not need to be passed as index.js is set up to handle when the variable is not defined.
+    # Passing in rss_feed would lead to index.js trying to process the string which would lead to non-desired output (error text)
     return render_template('index.html', title = site_title, project_description = project_description, currentLink = '')
 
 
