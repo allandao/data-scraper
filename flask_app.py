@@ -14,18 +14,29 @@ from flask import render_template
 from scraper import get_rss
 
 app = Flask(__name__)
-app.config["DEBUG"] = True # can remove when finished testing
+#app.config["DEBUG"] = True  can remove when finished testing
 # static files like css files go into a subfolder called static, files like index.html go into a subfolder called templates. configure on PythonAnywhere
+
+site_title = 'Python Web Scraping Project'
+project_description = 'Paste a url of any RSS feed of any website whitelisted by PythonAnywhere to see the resulting data in a easy to read format.'
+currentLink = 'onWebAppStart'
 
 @app.route('/')
 def index():
-    site_title = "Python Web Scraping Project"
-    rss_feed = get_rss()
-    return render_template('index.html', title = site_title, project_description = "Paste a url of any RSS feed of any website whitelisted by PythonAnywhere to see the resulting data in a easy to read format.", rss_feed = rss_feed)
+    rss_feed = get_rss(currentLink)
+    return render_template('index.html', title = site_title, project_description = project_description, rss_feed = rss_feed, currentLink = currentLink)
 
 @app.route('/', methods=['POST'])
 def index_post():
-    #pasted_url = get_rss()
-    pasted_url = request.form['url']
-    return pasted_url
-    #return render_template('index.html', title = "Simple Python Web Scraper", paragraph = "Paste a url of any RSS feed to see the resulting data in a easy to read format", url = pasted_url)
+    userURL = request.form['userURL']
+    currentLink = userURL
+    rss_feed = get_rss(userURL)
+    return render_template('index.html', title = site_title, project_description = project_description, rss_feed = rss_feed, currentLink = currentLink)
+
+@app.errorhandler(Exception)
+def serverError(e):
+    # set to str(e) if outputting the error is desired
+    # rss_feed does not need to be passed as index.js is set up to handle when the variable is not defined
+    return render_template('index.html', title = site_title, project_description = project_description, currentLink = '')
+
+

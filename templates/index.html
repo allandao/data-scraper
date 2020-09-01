@@ -26,20 +26,30 @@
             <p>The whitelisted website restriction is due to constraints set by PythonAnywhere's free plan.</p>
             <a href = "https://www.pythonanywhere.com/whitelist/">PythonAnywhere's Whitelisted Websites</a>
             <p>Example RSS Feeds to use:</p>
-            <li>https://www.nlm.nih.gov/rss/auto/NLMGeneralAnnouncements.rss (Default feed on page load)</li>
+            <li>https://www.nlm.nih.gov/rss/auto/NLMGeneralAnnouncements.rss</li>
             <li>https://www.loc.gov/rss/pao/news.xml</li>
-            <li style = "padding-bottom: 15px;">https://xkcd.com/rss.xml</li>
-            <form method="POST" style = "padding-bottom: 15px;">
+            <li style = "margin-bottom: 15px;">https://xkcd.com/rss.xml</li>
+            <form method="POST" style = "margin-bottom: 15px;">
+                <!-- for="element_id" -->
                 <label for="fname">Paste in full URL of RSS Feed, including http:// or https:// below:</label><br />
-                <input type="text" id="UserURL" name="UserURL" value=""><br /><br />
+                <!-- id for DOM (CSS or JS) and name for HTTP methods like POST -->
+                <input type="text" action="{{ url_for('index_post') }}" id="userURL" name="userURL"><br /><br />
                 <input type="submit" class="btn btn-success" value="View">
             </form>
+            {% if 'onWebAppStart' == rss_feed %}
+            <!-- Show nothing when page first opens -->
+            {% elif rss_feed is defined %}
+            <p>Current link: {{ currentLink }}</p>
             <p>Formatted RSS Feed:</p>
-            {% for article in rss_feed %}
-            <li>{{ article['title'] + ' - ' + article['publishingDate'] }}</li>
-            <p>Link: <a href = "{{ article['link'] }}" >{{ article['link'] }}</a></p>
-            {% endfor %}
-            <p>Made by <a href = "allandao.com" style = "padding: 20px 0 20px 0;">Allan.</a></p>
+                {% for article in rss_feed %}
+                <li>{{ article['title'] }} - {{ article['publishingDate'] }}</li>
+                <p>Link: <a href = "{{ article['link'] }}" >{{ article['link'] }}</a></p>
+                {% endfor %}
+            {% else %}
+                <p>No URL or invalid URL provided. Please try again.</p>
+            {% endif %}
+            <p>If the web app needs to reset, navigate again to http://allandao.pythonanywhere.com (without a # or anything else at the end) or simply <a href = "http://allandao.pythonanywhere.com/">click here.</a>
+            <p>Made by <a href = "https://allandao.com" style = "margin: 20px 0 20px 0;">Allan.</a></p>
         </div>
         <!-- end of container -->
     </body>
