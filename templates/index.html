@@ -22,14 +22,16 @@
             </div>
         </nav>
         <div class="container">
-            <p>{{ project_description }}</p>
-            <p>The whitelisted website restriction is due to constraints set by PythonAnywhere's free plan.</p>
-            <a href = "https://www.pythonanywhere.com/whitelist/">PythonAnywhere's Whitelisted Websites</a>
+            <p>If you are like me, I wasn't sure what an RSS feed was when first working on this project. According to Macmillian Dictionary, an RSS feed "is a file that
+            delivers information from a website, sometimes in a summary with links to the full document, to another website.
+            RSS feeds are used mainly to supply the latest information to websites that are regularly updated."</p>
+            <p>{{ project_description }} The whitelisted website restriction is due to constraints set by PythonAnywhere's free plan.</p>
             <p>Example RSS Feeds to use:</p>
             <li>https://www.nlm.nih.gov/rss/auto/NLMGeneralAnnouncements.rss</li>
             <li>https://www.loc.gov/rss/pao/news.xml</li>
-            <li style = "margin-bottom: 15px;">https://xkcd.com/rss.xml</li>
-            <form method="POST" style = "margin-bottom: 15px;">
+            <li style = "margin-bottom: 12px;">https://xkcd.com/rss.xml</li>
+            <p>For more, visit <a href = "https://www.pythonanywhere.com/whitelist/">PythonAnywhere's whitelisted websites</a></p>
+            <form method="POST" style = "margin-bottom: 12px;">
                 <!-- for="element_id" -->
                 <label for="fname">Paste in full URL of RSS Feed, including http:// or https:// below:</label><br />
                 <!-- id for DOM (CSS or JS) and name for HTTP methods like POST -->

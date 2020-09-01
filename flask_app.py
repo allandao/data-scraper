@@ -18,7 +18,7 @@ app = Flask(__name__)
 # static files like css files go into a subfolder called static, files like index.html go into a subfolder called templates. configure on PythonAnywhere
 
 site_title = 'Python Web Scraping Project'
-project_description = 'Paste a url of any RSS feed of any website whitelisted by PythonAnywhere to see the resulting data in an easy to read format.'
+project_description = 'Paste the url of any RSS feed of any website whitelisted by PythonAnywhere to see the resulting data in an easy to read format.'
 currentLink = 'onWebAppStart'
 
 @app.route('/')
