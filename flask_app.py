@@ -5,7 +5,7 @@
 # Resources
 # https://blog.pythonanywhere.com/121/
 # https://www.techiediaries.com/flask-tutorial-templates/
-# flask render_template example
+# flask render_template examples
 
 # PEP-8 (Style Guide) Recommendation - one line per module or from ___ import statement
 from flask import Flask
