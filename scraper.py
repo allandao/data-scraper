@@ -18,7 +18,9 @@ def get_rss(rss_feed_url):
             rssfeed_data = BeautifulSoup(r.content, features='xml')
             # if scraping HTML, we would set features to 'html'
             # rssfeed_data = BeautifulSoup(r.content, "lxml") - needs to have lxml installed (this is an alternative)
-            print(rssfeed_data)
+
+            # debug
+            # print(rssfeed_data)
 
             article_list = []
 
@@ -35,15 +37,20 @@ def get_rss(rss_feed_url):
                     }
                 article_list.append(article)
 
-            article_list_formatted = []
-            for x in range(len(article_list)):
-                article_list_formatted.append(article_list[x]['title'] + ' - ' + article_list[x]['publishingDate'] + ' \nLink: ' + article_list[x]['link'])
+            # solution using jinja2 to render the desired output is preferred to the attempted solution below as line breaks are correctly implemented
+            # article_list_formatted = []
+            # for x in range(len(article_list)):
+                # article_list_formatted.append(article_list[x]['title'] + ' - ' + article_list[x]['publishingDate'] + ' \nLink: ' + article_list[x]['link'])
 
-            return article_list
+            # debug
             # return print('scraping succeeded: ', r.status_code) # should print 200 for r.status_code
+            return article_list
+
     except Exception as e:
-        print('Scraping failed. Here is the exception: ')
+        # debug
+        # print('Scraping failed. Here is the exception: ')
         print(e)
+
         return None
 
 
