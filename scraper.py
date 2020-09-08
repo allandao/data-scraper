@@ -51,7 +51,7 @@ def get_rss(rss_feed_url):
         # print('Scraping failed. Here is the exception: ')
         print(e)
 
-        return None
+        # no return None statement (never return null as described in Clean Code) and since desired outputted data is nothing
 
 
 
