@@ -1,6 +1,10 @@
 # scraper.py
+
 # Referencing Matthew Wimberly's tutorial, found here https://codeburst.io/building-an-rss-feed-scraper-with-python-73715ca06e1f
 # This was my first project related to web scraping.
+# Using the article above as a preliminary to build a web scraper, I extended this
+# into a project with the goal of creating a web app hosted on PythonAnywhere.
+# Includes comments documenting the learning process, including errors, resources used, and different solutions attempted.
 
 import requests
 from bs4 import BeautifulSoup
@@ -13,8 +17,8 @@ def get_rss(rss_feed_url):
         else:
             # since we are on the PythonAnyhwere platform, there are certain whitelisted websites that we must use under the free plan
             # the following link provides more details: https://www.pythonanywhere.com/whitelist/
-            # not using a whitelisted link gives the following error in the server.log files https://www.pythonanywhere.com/forums/topic/12714/ and does not allow the web app to load
-            r = requests.get(rss_feed_url) # GET method from rss feeds result in xml data
+            # not using a whitelisted link gives the following error in the server.log files: https://www.pythonanywhere.com/forums/topic/12714/ and does not allow the web app to load
+            r = requests.get(rss_feed_url) # GET HTTP method used to obtain xml data
             rssfeed_data = BeautifulSoup(r.content, features='xml')
             # if scraping HTML, we would set features to 'html'
             # rssfeed_data = BeautifulSoup(r.content, "lxml") - needs to have lxml installed (this is an alternative)
